@@ -11,7 +11,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 @router_auth.post("/login")
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    print(form_data)
     user = auth_crud.verify_password(form_data.username, form_data.password)
     if not user:
         raise HTTPException(
